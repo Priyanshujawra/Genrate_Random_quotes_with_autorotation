@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .home {
+      background-color: #264d79;
+      color: white;
+      width: 100%;
+      display: flex;
+      height: 500px;
+      align-items: center;
+      justify-content: center;
+      /* height: 600px; */
+    }
+
+    .content {
+      /* margin: auto; */
+      padding: 1rem;
+      height: 350px;
+      display: flex;
+      background: black;
+      align-items: center;
+      box-shadow: 0px 1px 20px black;
+      width: fit-content;
+      text-align: center;
+      justify-content: space-around;
+      flex-direction: column;
+      font-size: 1em;
+      line-height: normal;
+    }
+
+    .auto_rotate_quote {
+      display: flex;
+    }
+
+    .quote {
+      height: 3rem;
+      width: 400px;
+    }
+    button.btn_set {
+      font-size: 1.5rem;
+      text-transform: capitalize;
+      height: 54px;
+      width: 60%;
+    }
+    #rotate {
+      width: 1.5rem;
+      margin: 13px;
+    }
+  </style>
+
+  <body>
+    <div class="home">
+      <div class="content">
+        <h1>genrete quotes !..</h1>
+        <p class="quote"></p>
+        <button class="btn_set">click to genrate</button>
+        <input type="number" name="" id="count_no" value="2" />
+        <div class="auto_rotate_quote">
+          <input type="checkbox" name="" id="rotate" />
+          <label for="rotate">
+            <h2>click for auto rotation</h2>
+          </label>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let text_content = `Believe you can, and you're halfway there.
+Success is not final, failure is not fatal: It is the courage to continue that counts.
+The future belongs to those who believe in the beauty of their dreams.
+The only way to do great work is to love what you do.
+Don't watch the clock; do what it does, Keep going.
+Success is not the key to happiness, Happiness is the key to success.
+The biggest risk is not taking any risk. In a world that is changing quickly, the only strategy that is guaranteed to fail is not taking risks.
+The only limit to our realization of tomorrow will be our doubts of today.
+Your time is limited, don't waste it living someone else's life.
+Believe in yourself, take on your challenges, dig deep within yourself to conquer fears, Never let anyone bring you down, You got this.
+The only person you should try to be better than is the person you were yesterday.
+Your time is now, Start where you stand and never back down.
+Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work.
+Dream big and dare to fail.
+The only person you are destined to become is the person you decide to be.
+Success usually comes to those who are too busy to be looking for it.
+The difference between a successful person and others is not a lack of strength, not a lack of knowledge, but rather a lack of will.
+The harder you work for something, the greater you'll feel when you achieve it.
+Don't be pushed around by the fears in your mind, Be led by the dreams in your heart.
+If you can dream it, you can achieve it.
+The only thing standing between you and your goal is the story you keep telling yourself as to why you can't achieve it.
+Believe in yourself and all that you are, Know that there is something inside you that is greater than any obstacle.
+The only person you are destined to become is the person you decide to be.
+Success is not the absence of failure; it's the persistence through failure.
+Success comes to those who work for it.
+The only limit is the one you set yourself.
+Your dreams are within reach if you are willing to work for them.
+The journey may be difficult, but the destination is worth it.
+Every accomplishment starts with the decision to try.
+Challenges are what make life interesting and overcoming them is what makes life meaningful.
+The only way to predict the future is to create it.
+Your attitude determines your direction.
+Don't wait for opportunity, create it.
+Great things never come from comfort zones.
+The only failure is the failure to try.
+Strive for progress, not perfection.
+The best time to start is now.
+It always seems impossible until it's done.
+Don't be afraid to give up the good to go for the great.
+You are stronger than you think.`;
+    let array_quotes = text_content.split(".");
+
+    // var quotes = [
+    //   "Be kind to one another.",
+    //   "Dream big and never give up.",
+    //   "In every day, there is a chance to learn something new.",
+    //   "Believe in yourself and you can achieve anything.",
+    //   "The best way to predict the future is to create it.",
+    //   "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+    //   "The only limit to our realization of tomorrow will be our doubts of today.",
+    //   "Don't watch the clock; do what it does. Keep going.",
+    //   "Your time is limited, don't waste it living someone else's life.",
+    //   "Life is either a daring adventure or nothing at all.",
+    //   "You miss 100% of the shots you don't take.",
+    //   "The only way to do great work is to love what you do.",
+    //   "The future belongs to those who believe in the beauty of their dreams.",
+    //   "Happiness is not something ready-made. It comes from your own actions.",
+    //   "In the middle of every difficulty lies opportunity.",
+    //   "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    //   "Believe you can and you're halfway there.",
+    //   "Strive not to be a success, but rather to be of value.",
+    //   "The only person you should try to be better than is the person you were yesterday.",
+    //   "Don't count the days, make the days count.",
+    // ];
+    // console.log(typeof quotes)
+    let interr = null;
+    function startgenrate() {
+      // let
+      let quotesIndex = Math.floor(Math.random() * array_quotes.length);
+      let sem = document.getElementsByClassName("quote");
+      sem[0].textContent = array_quotes[quotesIndex];
+    }
+    window.open = startgenrate();
+
+    function stratrotation(interval) {
+      interr = setInterval(
+        startgenrate,
+
+        interval * 1000
+      );
+    }
+    function stoprotation() {
+      clearInterval(interr);
+    }
+    let btnclick = document.querySelector(".btn_set");
+    btnclick.addEventListener("click", () => {
+      startgenrate();
+    });
+    let check_condition = document.getElementById("rotate");
+    check_condition.addEventListener("change", () => {
+      let interval_count = document.getElementById("count_no");
+      if (check_condition.checked) {
+        let intervalint = parseInt(interval_count.value);
+        stratrotation(intervalint);
+
+
+      } else {
+        stoprotation();
+        
+      }
+
+    });
+  </script>
+</html>
